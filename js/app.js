@@ -1,6 +1,4 @@
-/*
- * Create a list that holds all of your cards
- */
+// Create list that holds cards
 const cards = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
 const icons = [];
 
@@ -13,12 +11,30 @@ icons[5] = "bicycle";
 icons[6] = "bomb";
 icons[7] = "leaf";
 
+// Create and display cards on page
+for (let i = 0; i < cards.length; i++) {
+// Loop through each card and create its HTML
+
+// Display cards with append
+
+// Set up event listener for a cards
+
+//cardElement.classList.add("show");
+
+}
+
 /*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
+ *   -
  *   - add each card's HTML to the page
  */
+
+//  - shuffle the list of cards using the provided "shuffle" method below
+
+// clear out any cards already in deck element to support refresh button
+
+// set up the event listener for a card.
+
+// cardElement.classList.add("show");
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -48,9 +64,3 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-const allCards = document.querySelectorAll('.card');
-
-allCards.forEach(function(card) {
-
-};
-};
