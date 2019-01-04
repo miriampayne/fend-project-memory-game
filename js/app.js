@@ -14,7 +14,8 @@ icons[7] = "leaf";
 // Create and display cards on page
 for (let i = 0; i < cards.length; i++) {
 // Loop through each card and create its HTML
-
+  const cardElement = document.createElement("div");
+  cardElement.classList.add("card");
 // Display cards with append
 
 // Set up event listener for a cards
