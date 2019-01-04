@@ -16,13 +16,17 @@ const deck = document.querySelector(".deck");
 // Create and display cards on page
 for (let i = 0; i < cards.length; i++) {
 // Loop through each card and create its HTML
-  const cardElement = document.createElement("div");
+  const cardElement = document.createElement("li");
+//cardElement.classList.add("show");
   cardElement.classList.add("card");
-// Display cards with append
+// Display icons
+  var cardType = cards[i];
+  var cardIcon = icons[cardType];
+  cardElement.innerHTML = `<i class="fa fa-${cardIcon}"></i>`;
   deck.appendChild(cardElement);
 // Set up event listener for a cards
 
-//cardElement.classList.add("show");
+
 
 }
 
