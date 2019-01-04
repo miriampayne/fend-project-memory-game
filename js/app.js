@@ -2,6 +2,16 @@
  * Create a list that holds all of your cards
  */
 const cards = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
+const icons = [];
+
+icons[0] = "diamond";
+icons[1] = "paper-plane-o";
+icons[2] = "anchor";
+icons[3] = "bolt";
+icons[4] = "cube";
+icons[5] = "bicycle";
+icons[6] = "bomb";
+icons[7] = "leaf";
 
 /*
  * Display the cards on the page
@@ -26,6 +36,8 @@ function shuffle(array) {
 }
 
 
+
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -36,3 +48,9 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+const allCards = document.querySelectorAll('.card');
+
+allCards.forEach(function(card) {
+
+};
+};
