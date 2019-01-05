@@ -24,10 +24,10 @@ for (let i = 0; i < cards.length; i++) {
   var cardIcon = icons[cardType];
   cardElement.innerHTML = `<i class="fa fa-${cardIcon}"></i>`;
   deck.appendChild(cardElement);
-// Set up event listener for a cards
-
-
-
+// Set up event listener for a card
+  cardElement.addEventListener("click", function() {
+    cardElement.classList.add("open", "show");
+  });
 }
 
 /*
