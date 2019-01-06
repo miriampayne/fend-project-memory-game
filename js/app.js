@@ -13,6 +13,8 @@ icons[7] = "leaf";
 
 const deck = document.querySelector(".deck");
 
+let openedCards = [];
+
 // Create and display cards on page
 for (let i = 0; i < cards.length; i++) {
 // Loop through each card and create its HTML
