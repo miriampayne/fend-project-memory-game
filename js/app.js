@@ -26,7 +26,10 @@ for (let i = 0; i < cards.length; i++) {
   deck.appendChild(cardElement);
 // Set up event listener for a card
   cardElement.addEventListener("click", function() {
+
     cardElement.classList.add("open", "show");
+// Save the opened cards
+    openedCards.push(this);
   });
 }
 
