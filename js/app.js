@@ -22,29 +22,30 @@ for (let i = 0; i < cards.length; i++) {
 //cardElement.classList.add("show");
   cardElement.classList.add("card");
 // Display icons
-  var cardType = cards[i];
-  var cardIcon = icons[cardType];
+  const cardType = cards[i];
+  const cardIcon = icons[cardType];
   cardElement.innerHTML = `<i class="fa fa-${cardIcon}"></i>`;
   deck.appendChild(cardElement);
 // Set up event listener for a card
   cardElement.addEventListener("click", function() {
+//find if something exists in an array
+// if the list already has another card, check to see if the two cards match
+  const findCard = openedCards.find(function(firstCard){
+    if (firstCard == secondCard) {
+      console.log('match')
+    }
+  });
 
-    cardElement.classList.add("open", "show");
+        cardElement.classList.add("open", "show");
 // Save the opened cards
-    openedCards.push(this);
+        openedCards.push(this);
+
   });
 }
 
-/*
- *   -
- *   - add each card's HTML to the page
- */
-
-//  - shuffle the list of cards using the provided "shuffle" method below
+//  shuffle the list of cards using the provided "shuffle" method below
 
 // clear out any cards already in deck element to support refresh button
-
-// set up the event listener for a card.
 
 // cardElement.classList.add("show");
 
@@ -70,7 +71,7 @@ function shuffle(array) {
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
+ *
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
  *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
