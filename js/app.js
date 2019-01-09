@@ -44,10 +44,16 @@ for (let i = 0; i < cards.length; i++) {
           currentCard.classList.add("match");
           previousCard.classList.add("match");
 
+// Reset opened cards for match
+          openedCards = [];
+
         } else {
 // No match
           currentCard.classList.remove("open", "show");
           previousCard.classList.remove("open", "show");
+
+// Reset opened cards for no match
+          openedCards = [];
 
         }
 
