@@ -28,32 +28,33 @@ for (let i = 0; i < cards.length; i++) {
   deck.appendChild(cardElement);
 // Event listener for a card
   cardElement.addEventListener("click", function() {
+
+    const currentCard = this;
+    const previousCard = openedCards[0];
 // Existing open card
       if(openedCards.length === 1) {
 
-        const currentCard = this;
-        const previousCard = openedCards[0];
-
         cardElement.classList.add("open", "show");
-// Save the openedCards
+// Save opened cards
         openedCards.push(this);
 
-// Compare 2 openedCards
+// Compare 2 opened cards
         if(currentCard.innerHTML === previousCard.innerHTML) {
-
+// Match
           currentCard.classList.add("match");
           previousCard.classList.add("match");
-// Reset openedCards
-          openedCards = [];
 
         } else {
-          console.log("no match!");
+// No match
+          currentCard.classList.remove("open", "show");
+          previousCard.classList.remove("open", "show");
+
         }
 
       } else {
-
-          cardElement.classList.add("open", "show");
-  // Save the opened cards
+// No open cards
+          currentCard.classList.add("open", "show");
+// Save opened cards
           openedCards.push(this);
 
       }
