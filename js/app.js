@@ -36,14 +36,19 @@ for (let i = 0; i < cards.length; i++) {
         openedCards.push(this);
 
 // Compare 2 opened cards
-
+        if(this.innerHTML === openedCards[0].innerHTML) {
+          console.log("matched!")
         } else {
+          console.log("no match!")
+        }
+
+      } else {
 
           cardElement.classList.add("open", "show");
   // Save the opened cards
           openedCards.push(this);
 
-        }
+      }
   });
 };
 
