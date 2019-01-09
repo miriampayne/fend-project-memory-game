@@ -28,21 +28,23 @@ for (let i = 0; i < cards.length; i++) {
   deck.appendChild(cardElement);
 // Event listener for a card
   cardElement.addEventListener("click", function() {
-//Existing opened card
+// Existing open card
       if(openedCards.length === 1) {
 
         const currentCard = this;
         const previousCard = openedCards[0];
 
         cardElement.classList.add("open", "show");
-// Save the opened cards
+// Save the openedCards
         openedCards.push(this);
 
-// Compare 2 opened cards
+// Compare 2 openedCards
         if(currentCard.innerHTML === previousCard.innerHTML) {
 
           currentCard.classList.add("match");
           previousCard.classList.add("match");
+// Reset openedCards
+          openedCards = [];
 
         } else {
           console.log("no match!");
