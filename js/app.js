@@ -31,15 +31,21 @@ for (let i = 0; i < cards.length; i++) {
 //Existing opened card
       if(openedCards.length === 1) {
 
+        const currentCard = this;
+        const previousCard = openedCards[0];
+
         cardElement.classList.add("open", "show");
 // Save the opened cards
         openedCards.push(this);
 
 // Compare 2 opened cards
-        if(this.innerHTML === openedCards[0].innerHTML) {
-          console.log("matched!")
+        if(currentCard.innerHTML === previousCard.innerHTML) {
+
+          currentCard.classList.add("match");
+          previousCard.classList.add("match");
+
         } else {
-          console.log("no match!")
+          console.log("no match!");
         }
 
       } else {
