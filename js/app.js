@@ -26,22 +26,26 @@ for (let i = 0; i < cards.length; i++) {
   const cardIcon = icons[cardType];
   cardElement.innerHTML = `<i class="fa fa-${cardIcon}"></i>`;
   deck.appendChild(cardElement);
-// Set up event listener for a card
+// Event listener for a card
   cardElement.addEventListener("click", function() {
-//find if something exists in an array
-// if the list already has another card, check to see if the two cards match
-  const findCard = openedCards.find(function(firstCard){
-    if (firstCard == secondCard) {
-      console.log('match')
-    }
-  });
+//Existing opened card
+      if(openedCards.length === 1) {
 
         cardElement.classList.add("open", "show");
 // Save the opened cards
         openedCards.push(this);
 
+// Compare 2 opened cards
+
+        } else {
+
+          cardElement.classList.add("open", "show");
+  // Save the opened cards
+          openedCards.push(this);
+
+        }
   });
-}
+};
 
 //  shuffle the list of cards using the provided "shuffle" method below
 
