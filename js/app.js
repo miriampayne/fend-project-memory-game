@@ -90,7 +90,7 @@ function shuffle(array) {
 
     return array;
 }
-shuffle(cards);
+
 setup();
 
 /*
