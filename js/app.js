@@ -34,6 +34,7 @@ const setup = function() {
 
       const currentCard = this;
       const previousCard = openedCards[0];
+
   // Prevent same card being clicked twice
       if(currentCard === previousCard) {
         return;
@@ -74,11 +75,9 @@ const setup = function() {
             openedCards.push(this);
 
         }
-      });
+    });
   };
 };
-//  shuffle the list of cards using the provided "shuffle" method below
-cards = shuffle(cards);
 // clear out any cards already in deck element to support refresh button
 
 // Shuffle function from http://stackoverflow.com/a/2450976
