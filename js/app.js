@@ -58,7 +58,7 @@ const setup = function() {
   // Reset opened cards for when matched
             openedCards = [];
 
-  // Check if game is OVER
+  // Check if game OVER
             gameOver();
 
           } else {
@@ -87,8 +87,6 @@ const setup = function() {
     }
   }
 };
-
-
 // clear out any cards already in deck element to support refresh button
 
 // Shuffle function from http://stackoverflow.com/a/2450976
