@@ -34,12 +34,17 @@ const setup = function() {
 
       const currentCard = this;
       const previousCard = openedCards[0];
+  // Prevent same card being clicked twice
+      if(currentCard === previousCard) {
+        return;
+      }
   // Existing open card
         if(openedCards.length === 1) {
 
           cardElement.classList.add("open", "show");
   // Save opened cards
           openedCards.push(this);
+
 
   // Compare 2 opened cards
           if(currentCard.innerHTML === previousCard.innerHTML) {
@@ -69,7 +74,7 @@ const setup = function() {
             openedCards.push(this);
 
         }
-    });
+      });
   };
 };
 //  shuffle the list of cards using the provided "shuffle" method below
@@ -92,6 +97,8 @@ function shuffle(array) {
 }
 
 setup();
+
+
 
 /*
   *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
