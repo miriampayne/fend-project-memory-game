@@ -1,5 +1,5 @@
 // Create list that holds cards
-const cards = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
+let cards = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
 const icons = [];
 
 icons[0] = "diamond";
@@ -73,7 +73,7 @@ const setup = function() {
   };
 };
 //  shuffle the list of cards using the provided "shuffle" method below
-
+cards = shuffle(cards);
 // clear out any cards already in deck element to support refresh button
 
 // Shuffle function from http://stackoverflow.com/a/2450976
