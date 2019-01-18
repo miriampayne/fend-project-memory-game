@@ -89,6 +89,8 @@ const setup = function() {
 };
 // clear out any cards already in deck element to support refresh button
 
+//  shuffle the list of cards using the provided "shuffle" method below
+cards = shuffle(cards);
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
