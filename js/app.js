@@ -58,6 +58,9 @@ const setup = function() {
   // Reset opened cards for when matched
             openedCards = [];
 
+  // Check if game is OVER
+            gameOver();
+
           } else {
   // No match - if the cards do not match, remove the cards from the list and hide the card's symbol
             currentCard.classList.remove("open", "show");
@@ -77,7 +80,15 @@ const setup = function() {
         }
     });
   };
+  // Create the winning condition
+  function gameOver() {
+    if(matchedCards.length === (icons.length * 2)) {
+      alert("GAME OVER!");
+    }
+  }
 };
+
+
 // clear out any cards already in deck element to support refresh button
 
 // Shuffle function from http://stackoverflow.com/a/2450976
