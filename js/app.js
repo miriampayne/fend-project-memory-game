@@ -62,12 +62,17 @@ const setup = function() {
             gameOver();
 
           } else {
-  // No match - if the cards do not match, remove the cards from the list and hide the card's symbol
-            currentCard.classList.remove("open", "show");
-            previousCard.classList.remove("open", "show");
 
+  // Wait 500ms, then action:
+            setTimeout(function() {
+  // No match - if the cards do not match, remove the cards from the list and hide the card's symbol
+              currentCard.classList.remove("open", "show");
+              previousCard.classList.remove("open", "show");
   // Reset opened cards for when no match
-            openedCards = [];
+              openedCards = [];
+            }, 500);
+
+
 
           }
 
