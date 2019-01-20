@@ -60,6 +60,7 @@ const setup = function() {
           }
       });
     }
+
 /*
  * Compare 2 cards
  */
@@ -92,6 +93,7 @@ const setup = function() {
       // Add new moves
       incrementCount();
     }
+
 /*
  * Game Over
  */
@@ -100,6 +102,7 @@ const setup = function() {
         alert("GAME OVER!");
       }
     }
+
 /*
  * Increment the move counter and display on page
  */
@@ -109,7 +112,24 @@ const setup = function() {
     function incrementCount() {
       moves++;
       movesElement.innerHTML = moves;
+
+      // Set rating
+      setRating();
     }
+
+/*
+ * Star Rating
+ */
+    const starsElement = document.querySelector(".stars");
+    starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
+    function setRating() {
+      if(moves >= 14 && moves <= 22) {
+        starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
+      } else if(moves > 22) {
+        starsElement.innerHTML = `<li><i class="fa fa-star"></i></li>`;
+      }
+    }
+
 /*
  * Refresh Deck
  */
@@ -123,10 +143,12 @@ const setup = function() {
       matchedCards = [];
       moves = 0;
       movesElement.innerHTML = moves;
+      starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
     });
     // Start Game for first time
     init();
   };
+
 /*
  * Shuffle
  */
