@@ -14,10 +14,8 @@ icons[7] = "leaf";
 const deck = document.querySelector(".deck");
 
 const setup = function() {
-
   let openedCards = [];
   let matchedCards = [];
-
   // Initialize game
   function init() {
     // Create cards
@@ -34,7 +32,6 @@ const setup = function() {
       click(cardElement);
     }
   };
-
   // Click Event
   function click(cardElement) {
     // Event listener for a card
@@ -49,11 +46,9 @@ const setup = function() {
         }
           // Existing open card
           if(openedCards.length === 1) {
-
             cardElement.classList.add("open", "show");
             // Save opened cards
             openedCards.push(this);
-
             // Compare 2 opened cards
             compare(currentCard, previousCard);
 
@@ -66,8 +61,8 @@ const setup = function() {
       });
     }
 /*
-* Compare 2 cards
-*/
+ * Compare 2 cards
+ */
     function compare(currentCard, previousCard) {
       // Matcher
       if(currentCard.innerHTML === previousCard.innerHTML) {
@@ -98,26 +93,31 @@ const setup = function() {
       incrementCount();
     }
 /*
-* Game Over
-*/
-    // Create the winning condition
+ * Game Over
+ */
     function gameOver() {
       if(matchedCards.length === (icons.length * 2)) {
         alert("GAME OVER!");
       }
     }
 /*
-* Increment the move counter and display on page
-*/
+ * Increment the move counter and display on page
+ */
     const moveCounter = document.querySelector(".moves")
     let moves = 0;
+    moveCounter.innerHTML = 0;
     function incrementCount() {
       moves++;
       moveCounter.innerHTML = moves;
     }
 /*
-* Restart Button
-*/
+ * Star Rating
+ */
+    // 
+
+/*
+ * Refresh Deck
+ */
     const resetBtn = document.querySelector(".restart");
     resetBtn.addEventListener("click",function() {
       // clear out any cards already in deck element to support refresh button
@@ -126,12 +126,14 @@ const setup = function() {
       init();
       // Reset any related variables
       matchedCards = [];
+      moves = 0;
     });
     // Start Game for first time
     init();
   };
-
-//  shuffle the list of cards using the provided "shuffle" method below
+/*
+ * Shuffle
+ */
 cards = shuffle(cards);
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -144,15 +146,9 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
-
 setup();
-
-
-
 /*
-  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
   *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
