@@ -119,7 +119,7 @@ const setup = function() {
     function gameOver() {
       if(matchedCards.length === (icons.length * 2)) {
         stopTimer();
-        alert("GAME OVER! " + currentSeconds + " seconds");
+        alert ("🎉🎉 CONGRATULATIONS!!! 🎉🎉 \n\n You've won the game in " + currentSeconds + " seconds with " + starCount + " stars, nice work!");
       }
     }
 
@@ -172,18 +172,21 @@ const setup = function() {
       moves++;
       movesElement.innerHTML = moves;
       // Set rating
-      setRating();
+      starRating();
     }
 
 /*
  * Star Rating
  */
     const starsElement = document.querySelector(".stars");
+    let starCount = 3;
     starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
-    function setRating() {
+    function starRating() {
       if(moves >= 14 && moves <= 22) {
+        starCount--;
         starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
       } else if(moves > 22) {
+        starCount-- && starCount--;
         starsElement.innerHTML = `<li><i class="fa fa-star"></i></li>`;
       }
     }
@@ -201,7 +204,8 @@ const setup = function() {
       matchedCards = [];
       moves = 0;
       movesElement.innerHTML = moves;
-      starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
+      starCount = 3;
+      starsElement.innerHTML = starCount;
     });
     // Start Game for first time
     init();
