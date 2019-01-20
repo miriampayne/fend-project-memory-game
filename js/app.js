@@ -103,23 +103,18 @@ const setup = function() {
 /*
  * Increment the move counter and display on page
  */
-    const moveCounter = document.querySelector(".moves")
+    const movesElement = document.querySelector(".moves")
     let moves = 0;
-    moveCounter.innerHTML = 0;
+    movesElement.innerHTML = 0;
     function incrementCount() {
       moves++;
-      moveCounter.innerHTML = moves;
+      movesElement.innerHTML = moves;
     }
-/*
- * Star Rating
- */
-    //
-
 /*
  * Refresh Deck
  */
-    const resetBtn = document.querySelector(".restart");
-    resetBtn.addEventListener("click",function() {
+    const restartElement = document.querySelector(".restart");
+    restartElement.addEventListener("click",function() {
       // clear out any cards already in deck element to support refresh button
       deck.innerHTML = "";
       // Call 'init' to rebuild deck
@@ -127,7 +122,7 @@ const setup = function() {
       // Reset any related variables
       matchedCards = [];
       moves = 0;
-      moveCounter.innerHTML = moves;
+      movesElement.innerHTML = moves;
     });
     // Start Game for first time
     init();
