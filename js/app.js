@@ -1,4 +1,6 @@
-// Create list that holds cards
+/*
+ * Create list that holds cards
+ */
 let cards = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
 const icons = [];
 
@@ -13,11 +15,19 @@ icons[7] = "leaf";
 
 const deck = document.querySelector(".deck");
 
+/*
+ * Setup
+ */
 const setup = function() {
   let openedCards = [];
   let matchedCards = [];
+  let clockOn = false;
+  let currentSeconds = 0;
+
   // Initialize game
   function init() {
+    resetTimer();
+
     // Create cards
     for (let i = 0; i < cards.length; i++) {
       // Loop through each card and create its HTML
@@ -36,6 +46,10 @@ const setup = function() {
   function click(cardElement) {
     // Event listener for a card
       cardElement.addEventListener("click", function() {
+
+        if (!clockOn) {
+          startTimer();
+        }
 
         const currentCard = this;
         const previousCard = openedCards[0];
@@ -99,12 +113,52 @@ const setup = function() {
  */
     function gameOver() {
       if(matchedCards.length === (icons.length * 2)) {
-        alert("GAME OVER!");
+        stopTimer();
+        alert("GAME OVER! " + currentSeconds + " seconds");
       }
     }
 
 /*
- * Increment the move counter and display on page
+ * Set Timer Clock
+ */
+    function incrementTimer() {
+      currentSeconds++;
+      updateTimerDisplay();
+    }
+
+    function resetTimer() {
+      clockOn = false;
+      currentSeconds = 0;
+      updateTimerDisplay();
+    }
+
+    function updateTimerDisplay() {
+      const timerElement = document.querySelector(".timer");
+      timerElement.innerHTML = currentSeconds;
+    }
+
+    function startTimer() {
+      resetTimer();
+      clockOn = true;
+      setTimerTimeout();
+    }
+
+    function setTimerTimeout() {
+        setTimeout(() => {
+          console.log('1 second has passed');
+          if(clockOn) {
+            incrementTimer();
+            setTimerTimeout();
+          }
+        }, 1000);
+    }
+
+    function stopTimer() {
+      clockOn = false;
+    }
+
+/*
+ * Move Counter
  */
     const movesElement = document.querySelector(".moves")
     let moves = 0;
@@ -112,7 +166,6 @@ const setup = function() {
     function incrementCount() {
       moves++;
       movesElement.innerHTML = moves;
-
       // Set rating
       setRating();
     }
