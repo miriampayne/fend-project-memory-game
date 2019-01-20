@@ -30,7 +30,6 @@ const setup = function() {
       const cardIcon = icons[cardType];
       cardElement.innerHTML = `<i class="fa fa-${cardIcon}"></i>`;
       deck.appendChild(cardElement);
-
       // Add click event to each card
       click(cardElement);
     }
@@ -55,7 +54,6 @@ const setup = function() {
             // Save opened cards
             openedCards.push(this);
 
-
             // Compare 2 opened cards
             compare(currentCard, previousCard);
 
@@ -64,7 +62,6 @@ const setup = function() {
               currentCard.classList.add("open", "show");
               // Save opened cards
               openedCards.push(this);
-
           }
       });
     }
@@ -72,6 +69,7 @@ const setup = function() {
 * Compare 2 cards
 */
     function compare(currentCard, previousCard) {
+      // Matcher
       if(currentCard.innerHTML === previousCard.innerHTML) {
         // Matched - if the cards do match, lock the cards in the open position
         currentCard.classList.add("match");
@@ -96,8 +94,9 @@ const setup = function() {
           openedCards = [];
         }, 500);
       }
+      // Add new moves
+      incrementCount();
     }
-
 /*
 * Game Over
 */
@@ -108,27 +107,29 @@ const setup = function() {
       }
     }
 /*
+* Increment the move counter and display on page
+*/
+    const moveCounter = document.querySelector(".moves")
+    let moves = 0;
+    function incrementCount() {
+      moves++;
+      moveCounter.innerHTML = moves;
+    }
+/*
 * Restart Button
 */
     const resetBtn = document.querySelector(".restart");
     resetBtn.addEventListener("click",function() {
-      // Delete all openedCards
+      // clear out any cards already in deck element to support refresh button
       deck.innerHTML = "";
-
       // Call 'init' to rebuild deck
       init();
-
       // Reset any related variables
       matchedCards = [];
     });
     // Start Game for first time
     init();
   };
-
-
-
-
-// clear out any cards already in deck element to support refresh button
 
 //  shuffle the list of cards using the provided "shuffle" method below
 cards = shuffle(cards);
