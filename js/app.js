@@ -24,7 +24,9 @@ const setup = function() {
   let clockOn = false;
   let currentSeconds = 0;
 
-  // Initialize game
+/*
+ * Initialize game
+ */
   function init() {
     resetTimer();
 
@@ -42,7 +44,10 @@ const setup = function() {
       click(cardElement);
     }
   };
-  // Click Event
+
+/*
+ * Click Event
+ */
   function click(cardElement) {
     // Event listener for a card
       cardElement.addEventListener("click", function() {
@@ -119,7 +124,7 @@ const setup = function() {
     }
 
 /*
- * Set Timer Clock
+ * Set Timer
  */
     function incrementTimer() {
       currentSeconds++;
