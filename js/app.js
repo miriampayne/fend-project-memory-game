@@ -113,7 +113,7 @@ const setup = function() {
 /*
  * Star Rating
  */
-    // 
+    //
 
 /*
  * Refresh Deck
@@ -127,6 +127,7 @@ const setup = function() {
       // Reset any related variables
       matchedCards = [];
       moves = 0;
+      moveCounter.innerHTML = moves;
     });
     // Start Game for first time
     init();
