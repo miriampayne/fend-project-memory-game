@@ -65,7 +65,8 @@ const setup = function() {
         }
           // Existing open card
           if(openedCards.length === 1) {
-            cardElement.classList.add("open", "show");
+            currentCard.classList.add("open", "show");
+            console.log("open current card", currentCard)
             // Save opened cards
             openedCards.push(this);
             // Compare 2 opened cards
@@ -84,6 +85,8 @@ const setup = function() {
  * Compare 2 cards
  */
     function compare(currentCard, previousCard) {
+      console.log("current card", currentCard.innerHTML)
+      console.log("previousCard", previousCard.innerHTML)
       // Matcher
       if(currentCard.innerHTML === previousCard.innerHTML) {
         // Matched - if the cards do match, lock the cards in the open position
@@ -111,16 +114,21 @@ const setup = function() {
       }
       // Add new moves
       incrementCount();
+
     }
 
 /*
  * Game Over
  */
     function gameOver() {
-      if(matchedCards.length === (icons.length * 2)) {
-        stopTimer();
-        alert ("🎉🎉 CONGRATULATIONS!!! 🎉🎉 \n\n You've won the game in " + currentSeconds + " seconds with " + starCount + " stars, nice work!");
-      }
+
+        if(matchedCards.length === (icons.length * 2)) {
+          console.log("Game Over!")
+          stopTimer();
+          setTimeout(() => {
+            alert ("🎉🎉 CONGRATULATIONS!!! 🎉🎉 \n\n You've won the game in " + currentSeconds + " seconds with " + starCount + " stars, nice work!");
+          },1000)
+        }
     }
 
 /*
@@ -150,7 +158,6 @@ const setup = function() {
 
     function setTimerTimeout() {
         setTimeout(() => {
-          console.log('1 second has passed');
           if(clockOn) {
             incrementTimer();
             setTimerTimeout();
@@ -173,6 +180,7 @@ const setup = function() {
       movesElement.innerHTML = moves;
       // Set rating
       starRating();
+
     }
 
 /*
@@ -180,14 +188,17 @@ const setup = function() {
  */
     const starsElement = document.querySelector(".stars");
     let starCount = 3;
+    // let starCount = starsElement.innerHTML;
     starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
     function starRating() {
-      if(moves >= 14 && moves <= 22) {
-        starCount--;
+      if(moves === 14) {
+        starCount = 2;
         starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
-      } else if(moves > 22) {
-        starCount-- && starCount--;
+        console.log("Loose first star")
+      } else if(moves === 22) {
+        starCount = 1;
         starsElement.innerHTML = `<li><i class="fa fa-star"></i></li>`;
+        console.log("Loose second star")
       }
     }
 
@@ -205,7 +216,7 @@ const setup = function() {
       moves = 0;
       movesElement.innerHTML = moves;
       starCount = 3;
-      starsElement.innerHTML = starCount;
+      starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
     });
     // Start Game for first time
     init();
