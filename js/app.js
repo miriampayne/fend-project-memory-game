@@ -23,12 +23,15 @@ const setup = function() {
   let matchedCards = [];
   let clockOn = false;
   let currentSeconds = 0;
+  let starCount = 3;
+  let moves = 0;
 
 /*
  * Initialize game
  */
   function init() {
     resetTimer();
+    refreshDeck();
 
     // Create cards
     for (let i = 0; i < cards.length; i++) {
@@ -71,7 +74,6 @@ const setup = function() {
             openedCards.push(this);
             // Compare 2 opened cards
             compare(currentCard, previousCard);
-
           } else {
               // No open cards
               currentCard.classList.add("open", "show");
@@ -112,9 +114,6 @@ const setup = function() {
           openedCards = [];
         }, 500);
       }
-      // Add new moves
-      incrementCount();
-
     }
 
 /*
@@ -123,10 +122,10 @@ const setup = function() {
     function gameOver() {
 
         if(matchedCards.length === (icons.length * 2)) {
-          console.log("Game Over!")
+          //console.log("Game Over!")
           stopTimer();
           setTimeout(() => {
-            alert ("🎉🎉 CONGRATULATIONS!!! 🎉🎉 \n\n You've won the game in " + currentSeconds + " seconds with " + starCount + " stars, nice work!");
+            alert ("🎉🎉 CONGRATULATIONS!!! 🎉🎉 \n\n You've won the game in " + currentSeconds + " seconds with " + starCount + " stars, nice work! \n\n Would you like to play again?");
           },1000)
         }
     }
@@ -172,52 +171,55 @@ const setup = function() {
 /*
  * Move Counter
  */
-    const movesElement = document.querySelector(".moves")
-    let moves = 0;
-    movesElement.innerHTML = 0;
-    function incrementCount() {
-      moves++;
-      movesElement.innerHTML = moves;
-      // Set rating
-      starRating();
-
+    function moveCounter() {
+      const movesElement = document.querySelector(".moves")
+      movesElement.innerHTML = 0;
+      function incrementCount() {
+        moves++;
+        movesElement.innerHTML = moves;
+        // Set rating
+        starRating();
+      }
     }
 
 /*
  * Star Rating
  */
-    const starsElement = document.querySelector(".stars");
-    let starCount = 3;
-    // let starCount = starsElement.innerHTML;
-    starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
     function starRating() {
-      if(moves === 14) {
-        starCount = 2;
-        starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
-        console.log("Loose first star")
-      } else if(moves === 22) {
-        starCount = 1;
-        starsElement.innerHTML = `<li><i class="fa fa-star"></i></li>`;
-        console.log("Loose second star")
+      const starsElement = document.querySelector(".stars");
+      // let starCount = starsElement.innerHTML;
+      starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
+      function starRating() {
+        if(moves === 14) {
+          starCount = 2;
+          starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
+          // console.log("Loose first star")
+        } else if(moves === 22) {
+          starCount = 1;
+          starsElement.innerHTML = `<li><i class="fa fa-star"></i></li>`;
+          // console.log("Loose second star")
+        }
       }
     }
 
 /*
  * Refresh Deck
  */
-    const restartElement = document.querySelector(".restart");
-    restartElement.addEventListener("click",function() {
-      // clear out any cards already in deck element to support refresh button
-      deck.innerHTML = "";
-      // Call 'init' to rebuild deck
-      init();
-      // Reset any related variables
-      matchedCards = [];
-      moves = 0;
-      movesElement.innerHTML = moves;
-      starCount = 3;
-      starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
-    });
+    function refreshDeck() {
+      const restartElement = document.querySelector(".restart");
+      restartElement.addEventListener("click",function() {
+        // clear out any cards already in deck element to support refresh button
+        deck.innerHTML = "";
+        // Call 'init' to rebuild deck
+        init();
+        // Reset any related variables
+        matchedCards = [];
+        moves = 0;
+        movesElement.innerHTML = moves;
+        starCount = 3;
+        starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
+      });
+    }
     // Start Game for first time
     init();
   };
