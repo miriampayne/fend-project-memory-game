@@ -1,7 +1,8 @@
 /*
  * Create list that holds cards
  */
-let cards = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
+let cards = [0, 1, 2, 3, 4, 5, 6, 7];
+let dupCards = cards.concat(cards);
 const icons = [];
 
 icons[0] = "diamond";
@@ -33,12 +34,12 @@ const setup = function() {
     resetTimer();
 
     // Create cards
-    for (let i = 0; i < cards.length; i++) {
+    for (let i = 0; i < dupCards.length; i++) {
       // Loop through each card and create its HTML
       const cardElement = document.createElement("li");
       cardElement.classList.add("card");
       // Display the card's symbol
-      const cardType = cards[i];
+      const cardType = dupCards[i];
       const cardIcon = icons[cardType];
       cardElement.innerHTML = `<i class="fa fa-${cardIcon}"></i>`;
       deck.appendChild(cardElement);
@@ -241,7 +242,7 @@ const setup = function() {
 /*
  * Shuffle
  */
-cards = shuffle(cards);
+dupCards = shuffle(dupCards);
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
