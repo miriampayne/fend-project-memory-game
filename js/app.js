@@ -29,9 +29,8 @@ const setup = function() {
 /*
  * Initialize game
  */
-  function init() {
+  function startGame() {
     resetTimer();
-    refreshDeck();
 
     // Create cards
     for (let i = 0; i < cards.length; i++) {
@@ -124,9 +123,11 @@ const setup = function() {
         if(matchedCards.length === (icons.length * 2)) {
           //console.log("Game Over!")
           stopTimer();
+          // we want to show the last card before showing the alert so pause briefly before showing alert
           setTimeout(() => {
             alert ("🎉🎉 CONGRATULATIONS!!! 🎉🎉 \n\n You've won the game in " + currentSeconds + " seconds with " + starCount + " stars, nice work! \n\n Would you like to play again?");
-          },1000)
+            restart();
+          }, 1);
         }
     }
 
@@ -202,26 +203,39 @@ const setup = function() {
       }
     }
 
+    function restart() {
+      const movesElement = document.querySelector(".moves");
+      const starsElement = document.querySelector(".stars");
+
+      // clear out any cards already in deck element to support refresh button
+      deck.innerHTML = "";
+      // Call 'init' to rebuild deck
+      startGame();
+      // Reset any related variables
+      matchedCards = [];
+      moves = 0;
+      movesElement.innerHTML = moves;
+      starCount = 3;
+      starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
+    }
+
 /*
  * Refresh Deck
  */
-    function refreshDeck() {
+    function refreshClickHandler() {
       const restartElement = document.querySelector(".restart");
       restartElement.addEventListener("click",function() {
-        // clear out any cards already in deck element to support refresh button
-        deck.innerHTML = "";
-        // Call 'init' to rebuild deck
-        init();
-        // Reset any related variables
-        matchedCards = [];
-        moves = 0;
-        movesElement.innerHTML = moves;
-        starCount = 3;
-        starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
+        restart();
       });
     }
+
+    function initClickHandlers() {
+      refreshClickHandler();
+    }
+
     // Start Game for first time
-    init();
+    initClickHandlers();
+    startGame();
   };
 
 /*
