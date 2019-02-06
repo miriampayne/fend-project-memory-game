@@ -67,19 +67,19 @@ const setup = function() {
           return;
         }
           // Existing open card
-          if(openedCards.length === 1) {
-            currentCard.classList.add("open", "show");
-            console.log("open current card", currentCard)
-            // Save opened cards
-            openedCards.push(this);
-            // Compare 2 opened cards
-            compare(currentCard, previousCard);
-          } else {
-              // No open cards
-              currentCard.classList.add("open", "show");
-              // Save opened cards
-              openedCards.push(this);
-          }
+        if(openedCards.length === 1) {
+          currentCard.classList.add("open", "show");
+          // console.log("open current card", currentCard)
+          // Save opened cards
+          openedCards.push(this);
+          // Compare 2 opened cards
+          compare(currentCard, previousCard);
+        } else {
+          // No open cards
+          currentCard.classList.add("open", "show");
+          // Save opened cards
+          openedCards.push(this);
+        }
       });
     }
 
@@ -89,6 +89,9 @@ const setup = function() {
     function compare(currentCard, previousCard) {
       console.log("current card", currentCard.innerHTML)
       console.log("previousCard", previousCard.innerHTML)
+
+      incrementMoves()
+
       // Matcher
       if(currentCard.innerHTML === previousCard.innerHTML) {
         // Matched - if the cards do match, lock the cards in the open position
@@ -128,6 +131,7 @@ const setup = function() {
           setTimeout(() => {
             alert ("🎉🎉 CONGRATULATIONS!!! 🎉🎉 \n\n You've won the game in " + currentSeconds + " seconds with " + starCount + " stars, nice work! \n\n Would you like to play again?");
             restart();
+          // maybe try 0
           }, 1);
         }
     }
@@ -173,35 +177,38 @@ const setup = function() {
 /*
  * Move Counter
  */
-    function moveCounter() {
+    function incrementMoves() {
+      console.log("updating")
       const movesElement = document.querySelector(".moves")
-      movesElement.innerHTML = 0;
-      function incrementCount() {
-        moves++;
-        movesElement.innerHTML = moves;
-        // Set rating
-        starRating();
-      }
+      moves++;
+      movesElement.innerHTML = moves;
+      // Set rating
+      starRating();
     }
 
 /*
  * Star Rating
  */
     function starRating() {
+      console.log("moves", moves);
       const starsElement = document.querySelector(".stars");
       // let starCount = starsElement.innerHTML;
-      starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
-      function starRating() {
-        if(moves === 14) {
+      function checkStarRating() {
+        console.log("stars");
+        if(moves >= 14 && moves <= 22) {
+          console.log("checkStarRating");
           starCount = 2;
           starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
           // console.log("Loose first star")
-        } else if(moves === 22) {
+        } else if(moves > 22) {
           starCount = 1;
           starsElement.innerHTML = `<li><i class="fa fa-star"></i></li>`;
           // console.log("Loose second star")
+        } else {
+          starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
         }
       }
+      checkStarRating();
     }
 
     function restart() {
@@ -218,6 +225,10 @@ const setup = function() {
       movesElement.innerHTML = moves;
       starCount = 3;
       starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
+      openedCards = [];
+      clockOn = false;
+      currentSeconds = 0;
+      starCount = 3;
     }
 
 /*
@@ -232,6 +243,7 @@ const setup = function() {
 
     function initClickHandlers() {
       refreshClickHandler();
+
     }
 
     // Start Game for first time
