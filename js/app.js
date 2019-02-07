@@ -220,15 +220,14 @@ const setup = function() {
       // Call 'init' to rebuild deck
       startGame();
       // Reset any related variables
-      matchedCards = [];
-      moves = 0;
-      movesElement.innerHTML = moves;
-      starCount = 3;
-      starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
       openedCards = [];
+      matchedCards = [];
       clockOn = false;
       currentSeconds = 0;
       starCount = 3;
+      moves = 0;
+      movesElement.innerHTML = moves;
+      starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
     }
 
 /*
