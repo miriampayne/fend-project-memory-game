@@ -16,6 +16,20 @@ icons[7] = "leaf";
 
 const deck = document.querySelector(".deck");
 
+let cards = dealCards();
+renderScreen(cards);
+function handleCardClick(event) {
+
+};
+setupCardEvents(cards, handleCardClick);
+
+function dealCards() {
+  let cards = [0, 1, 2, 3, 4, 5, 6, 7];
+  let dupCards = cards.concat(cards);
+  // let shuffledCards = shuffle(dupCards);
+  // return shuffledCards;
+  return shuffle(dupCards);
+}
 /*
  * Setup
  */
@@ -54,35 +68,36 @@ const setup = function() {
  */
   function click(cardElement) {
     // Event listener for a card
-      cardElement.addEventListener("click", function() {
+    function cardClickHandler() {
+      if (!clockOn) {
+        startTimer();
+      }
 
-        if (!clockOn) {
-          startTimer();
-        }
+      const currentCard = this;
+      const previousCard = openedCards[0];
 
-        const currentCard = this;
-        const previousCard = openedCards[0];
-
-        // Prevent same card being clicked twice
-        if(currentCard === previousCard) {
-          return;
-        }
-          // Existing open card
-        if(openedCards.length === 1) {
-          currentCard.classList.add("open", "show");
-          // console.log("open current card", currentCard)
-          // Save opened cards
-          openedCards.push(this);
-          // Compare 2 opened cards
-          compare(currentCard, previousCard);
-        } else {
-          // No open cards
-          currentCard.classList.add("open", "show");
-          // Save opened cards
-          openedCards.push(this);
-        }
-      });
+      // Prevent same card being clicked twice
+      if(currentCard === previousCard) {
+        return;
+      }
+        // Existing open card
+      if(openedCards.length === 1) {
+        currentCard.classList.add("open", "show");
+        // console.log("open current card", currentCard)
+        // Save opened cards
+        openedCards.push(this);
+        // Compare 2 opened cards
+        compare(currentCard, previousCard);
+      } else {
+        // No open cards
+        currentCard.classList.add("open", "show");
+        // Save opened cards
+        openedCards.push(this);
+      }
     }
+
+    cardElement.addEventListener("click", cardClickHandler);
+  }
 
 /*
  * Compare 2 cards
