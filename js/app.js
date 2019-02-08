@@ -131,8 +131,8 @@ const setup = function() {
           setTimeout(() => {
             alert ("🎉🎉 CONGRATULATIONS!!! 🎉🎉 \n\n You've won the game in " + currentSeconds + " seconds with " + starCount + " stars, nice work! \n\n Would you like to play again?");
             restart();
-          // maybe try 0
-          }, 1);
+        // }, 1); try 0
+        }, 0);
         }
     }
 
