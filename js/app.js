@@ -20,6 +20,7 @@ const deck = document.querySelector(".deck");
  * Setup
  */
 const setup = function() {
+  // State
   let openedCards = [];
   let matchedCards = [];
   let clockOn = false;
