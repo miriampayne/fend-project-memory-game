@@ -15,11 +15,23 @@ icons[6] = "bomb";
 icons[7] = "leaf";
 
 const deck = document.querySelector(".deck");
+let previousCard = null;
 
 let cards = dealCards();
 renderScreen(cards);
 function handleCardClick(event) {
+  const clickedCard = whichCardWasClicked(event);
 
+  // previousCard = 0
+  if (previousCard !== null) {
+    // There's a previousCard
+  }
+  else {
+    // No previous card
+  }
+  if (previousCard === clickedCard) {
+
+  }
 };
 setupCardEvents(cards, handleCardClick);
 
