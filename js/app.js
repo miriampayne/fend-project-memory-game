@@ -75,7 +75,7 @@ const setup = function() {
           openedCards.push(this);
           // Compare 2 opened cards
           compare(currentCard, previousCard);
-        } else {
+        } else if (openedCards.length === 0) {
           // No open cards
           currentCard.classList.add("open", "show");
           // Save opened cards
@@ -133,7 +133,7 @@ const setup = function() {
             alert ("🎉🎉 CONGRATULATIONS!!! 🎉🎉 \n\n You've won the game in " + currentSeconds + " seconds with " + starCount + " stars, nice work! \n\n Would you like to play again?");
             restart();
         // }, 1); try 0
-        }, 0);
+          }, 0);
         }
     }
 

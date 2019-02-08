@@ -1,3 +1,9 @@
 # How to contribute
 
-The files in this repository are used as the starting point for all students. Because we want students to write the majority of the code themselves, pull requests (most likely) will _not_ be merged into the project.
+Pull requests welcome, to get started, open the app.js file and add new features.
+
+Suggestions for contribution:
+
+- Add CSS animations when cards are clicked, unsuccessfully matched, and successfully matched.
+- Additional functionality (Implement a leaderboard, store game state using local storage, etc.)
+- Implement additional optimisations that improve the performance and user experience of the game (keyboard shortcuts for gameplay, etc).
