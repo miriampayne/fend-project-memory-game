@@ -193,8 +193,7 @@ const setup = function() {
     function starRating() {
       console.log("moves", moves);
       const starsElement = document.querySelector(".stars");
-      // let starCount = starsElement.innerHTML;
-      function checkStarRating() {
+        // let starCount = starsElement.innerHTML;
         console.log("stars");
         if(moves >= 14 && moves <= 22) {
           console.log("checkStarRating");
@@ -208,8 +207,6 @@ const setup = function() {
         } else {
           starsElement.innerHTML = `<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>`;
         }
-      }
-      checkStarRating();
     }
 
     function restart() {
